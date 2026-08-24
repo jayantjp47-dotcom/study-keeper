@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consistency Keeper — JEE Main 2027</title>
+<style>
+:root{--bg:#0a0d14;--panel:#111622;--panel2:#171d2b;--text:#f5f7fb;--muted:#8e98aa;--line:#252d3d;--accent:#7c5cff;--accent2:#18d7a3;--danger:#ff6678;--shadow:0 18px 50px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#392b79 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input{font:inherit}button{cursor:pointer;border:0}.app{display:flex;min-height:100vh}.side{width:245px;border-right:1px solid var(--line);padding:28px 18px;position:fixed;inset:0 auto 0 0;background:#0c1019e8;backdrop-filter:blur(15px)}.brand{font-size:22px;font-weight:800;margin:0 10px 35px}.brand span{color:var(--accent)}.nav button{display:block;width:100%;text-align:left;padding:13px 14px;margin:6px 0;background:transparent;color:var(--muted);border-radius:12px}.nav button.active,.nav button:hover{background:#1b2130;color:#fff}.main{margin-left:245px;width:calc(100% - 245px);padding:30px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.eyebrow{color:var(--accent2);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}.title{font-size:34px;margin:5px 0}.subtitle{color:var(--muted)}.date{color:var(--muted);font-size:14px}.grid{display:grid;gap:18px}.stats{grid-template-columns:repeat(4,1fr)}.card{background:linear-gradient(145deg,#151b29,#101520);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}.stat-label{color:var(--muted);font-size:13px}.stat{font-size:30px;font-weight:800;margin:7px 0}.green{color:var(--accent2)}.purple{color:#a997ff}.red{color:var(--danger)}.layout{grid-template-columns:1.35fr .65fr;margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.section-title h2{font-size:18px;margin:0}.progress{height:9px;background:#252b38;border-radius:99px;overflow:hidden}.bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),#a996ff)}.target{padding:14px 0;border-bottom:1px solid var(--line)}.target:last-child{border-bottom:0}.target-row{display:flex;justify-content:space-between;gap:12px}.target-name{font-weight:650}.target-meta{color:var(--muted);font-size:12px;margin-top:5px}.check{width:23px;height:23px;border-radius:7px;background:#202737;border:1px solid #343e52;color:white}.check.done{background:var(--accent2);color:#06130f}.target-actions{display:flex;align-items:center;gap:10px}.btn{padding:10px 14px;border-radius:10px;background:#252c3d;color:#fff}.btn.primary{background:var(--accent)}.btn.danger{background:#3b1e28;color:#ff9aaa}.countdown{font-size:37px;font-weight:850;margin:8px 0}.ring{width:170px;height:170px;border-radius:50%;display:grid;place-items:center;margin:8px auto 20px;background:conic-gradient(var(--accent2) calc(var(--p)*1%),#262d3b 0)}.ring:before{content:"";position:absolute;width:128px;height:128px;background:#121825;border-radius:50%}.ring span{position:relative;font-size:28px;font-weight:800}.week{display:flex;gap:8px;align-items:end;height:145px}.day{flex:1;text-align:center}.daybar{height:105px;background:#202737;border-radius:8px;position:relative;overflow:hidden}.dayfill{position:absolute;bottom:0;width:100%;background:linear-gradient(180deg,#a997ff,var(--accent));border-radius:8px}.day small{display:block;color:var(--muted);margin-top:8px}.subject{margin:10px 0}.subject-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}.subject-top span:last-child{color:var(--muted)}.modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modalbox{width:min(520px,100%);background:#151b28;border:1px solid var(--line);border-radius:18px;padding:24px}.modalbox input{width:100%;padding:12px;background:#0e131d;border:1px solid var(--line);color:white;border-radius:10px;margin:7px 0 15px}.actions{display:flex;gap:10px;justify-content:flex-end}.toast{position:fixed;right:20px;bottom:20px;background:#192131;border:1px solid var(--line);padding:13px 16px;border-radius:12px;display:none}.empty{color:var(--muted);padding:25px;text-align:center}.mobile{display:none}
+@media(max-width:900px){.side{width:75px}.brand{font-size:0}.brand span{font-size:22px}.nav button{font-size:0;text-align:center}.nav button:first-letter{font-size:20px}.main{margin-left:75px;width:calc(100% - 75px);padding:18px}.stats{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.title{font-size:27px}}
+@media(max-width:600px){.stats{grid-template-columns:1fr 1fr}.top{align-items:flex-start}.date{display:none}.stat{font-size:25px}.main{padding:14px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand">Consistency <span>Keeper</span></div>
+  <div class="nav">
+    <button class="active" onclick="show('dashboard',this)">⌂ Dashboard</button>
+    <button onclick="show('targets',this)">✓ Targets</button>
+    <button onclick="show('analytics',this)">◒ Analytics</button>
+    <button onclick="show('settings',this)">⚙ Settings</button>
+  </div>
+</aside>
+<main class="main">
+  <div class="top">
+    <div><div class="eyebrow">JEE Main 2027 • January</div><h1 class="title" id="pageTitle">Good evening, Jayant 👋</h1><div class="subtitle">Small progress every day becomes a big result.</div></div>
+    <div class="date" id="today"></div>
+  </div>
+
+  <section id="dashboard">
+    <div class="grid stats">
+      <div class="card"><div class="stat-label">Consistency Score</div><div class="stat purple" id="score">0%</div><div class="stat-label">Based on completed targets</div></div>
+      <div class="card"><div class="stat-label">Current Streak</div><div class="stat green" id="streak">0 days 🔥</div><div class="stat-label">Keep the chain alive</div></div>
+      <div class="card"><div class="stat-label">Study Hours</div><div class="stat" id="hours">0h</div><div class="stat-label">Total logged</div></div>
+      <div class="card"><div class="stat-label">Targets Today</div><div class="stat" id="targetCount">0 / 0</div><div class="stat-label">Completed</div></div>
+    </div>
+
+    <div class="grid layout">
+      <div class="card">
+        <div class="section-title"><h2>Today's targets</h2><button class="btn primary" onclick="openModal()">+ Add target</button></div>
+        <div id="targetList"></div>
+      </div>
+      <div class="card">
+        <div class="section-title"><h2>January 2027 countdown</h2></div>
+        <div class="countdown" id="countdown">—</div>
+        <div class="stat-label">Days until 1 January 2027</div>
+        <div style="margin-top:25px;text-align:center"><div class="ring" style="--p:0" id="ring"><span id="ringText">0%</span></div><div class="stat-label">Today's completion</div></div>
+      </div>
+    </div>
+
+    <div class="grid layout">
+      <div class="card"><div class="section-title"><h2>Daily consistency graph</h2><span class="stat-label">Auto-updates every 7 days</span></div>
+<canvas id="consistencyChart" height="170" style="width:100%;margin-top:5px"></canvas></div>
+      <div class="card"><div class="section-title"><h2>Subject progress</h2></div><div id="subjects"></div></div>
+    </div>
+  </section>
+
+  <section id="targets" style="display:none"><div class="card"><div class="section-title"><h2>Target manager</h2><button class="btn primary" onclick="openModal()">+ Add target</button></div><div id="allTargets"></div></div></section>
+  <section id="analytics" style="display:none"><div class="grid stats"><div class="card"><div class="stat-label">Best streak</div><div class="stat green" id="best">0 days</div></div><div class="card"><div class="stat-label">Completion rate</div><div class="stat purple" id="rate">0%</div></div><div class="card"><div class="stat-label">Targets done</div><div class="stat" id="doneTotal">0</div></div><div class="card"><div class="stat-label">Days tracked</div><div class="stat" id="daysTracked">0</div></div></div><div class="card" style="margin-top:18px"><div class="section-title"><h2>Consistency insight</h2></div><p id="insight" class="subtitle"></p></div></section>
+  <section id="settings" style="display:none"><div class="card"><h2>Settings</h2><p class="subtitle">Your data is stored in this browser using local storage.</p><button class="btn danger" onclick="resetData()">Reset all data</button></div></section>
+</main>
+</div>
+
+<div class="modal" id="modal"><div class="modalbox"><h2>Add a daily target</h2><label>Target</label><input id="name" placeholder="e.g. Physics — NLM lecture + notes"><label>Subject</label><input id="subject" placeholder="Physics / Chemistry / Maths"><label>Estimated hours</label><input id="duration" type="number" min="0.25" step="0.25" placeholder="2"><div class="actions"><button class="btn" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="addTarget()">Add target</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const key='ck_jee_2027_v1';
+let data=JSON.parse(localStorage.getItem(key)||'null')||{targets:[],days:{},hours:0};
+const todayKey=()=>new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem(key,JSON.stringify(data))}
+function seed(){if(!data.targets.length){data.targets=[
+{id:1,name:'Physics — Lecture / Concept',subject:'Physics',duration:2,done:false},
+{id:2,name:'Chemistry — Lecture / Revision',subject:'Chemistry',duration:2,done:false},
+{id:3,name:'Maths — Practice + PYQs',subject:'Maths',duration:2,done:false}
+];save()}}
+seed();
+function fmtDate(){document.getElementById('today').textContent=new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
+function render(){
+ const t=data.targets, done=t.filter(x=>x.done).length, pct=t.length?Math.round(done/t.length*100):0;
+ document.getElementById('score').textContent=pct+'%'; document.getElementById('targetCount').textContent=`${done} / ${t.length}`;
+ document.getElementById('hours').textContent=(data.hours||0)+'h';
+ document.getElementById('ring').style.setProperty('--p',pct); document.getElementById('ringText').textContent=pct+'%';
+ document.getElementById('targetList').innerHTML=t.length?t.map(targetHTML).join(''):'<div class="empty">No targets yet. Add your first target.</div>';
+ document.getElementById('allTargets').innerHTML=t.length?t.map(targetHTML).join(''):'<div class="empty">No targets yet.</div>';
+ renderWeek(); renderSubjects(); analytics();
+}
+function targetHTML(x){return `<div class="target"><div class="target-row"><div><div class="target-name">${esc(x.name)}</div><div class="target-meta">${esc(x.subject||'General')} • ${x.duration||0}h</div></div><div class="target-actions"><button class="check ${x.done?'done':''}" onclick="toggle(${x.id})">${x.done?'✓':''}</button><button class="btn danger" onclick="removeTarget(${x.id})">×</button></div></div></div>`}
+function toggle(id){let x=data.targets.find(a=>a.id===id); if(!x)return; x.done=!x.done; data.hours=Math.max(0,(data.hours||0)+(x.done?Number(x.duration||0):-Number(x.duration||0))); if(x.done)data.days[todayKey()]=(data.days[todayKey()]||0)+1; else data.days[todayKey()]=Math.max(0,(data.days[todayKey()]||0)-1);save();render();toast(x.done?'Target completed! 🔥':'Target marked incomplete.')}
+function removeTarget(id){data.targets=data.targets.filter(x=>x.id!==id);save();render()}
+function renderWeek(){
+ const c=document.getElementById('consistencyChart'),ctx=c.getContext('2d'),dpr=window.devicePixelRatio||1,w=c.clientWidth,h=170;
+ c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+ const now=new Date(), vals=[], labels=[];
+ // Each graph is one 7-day block. The block automatically changes every 7 days.
+ const blockStart=Math.floor((now.getTime()-new Date('2026-01-01T00:00:00').getTime())/(7*86400000))*7;
+ const start=new Date('2026-01-01T00:00:00'); start.setDate(start.getDate()+blockStart);
+ for(let i=0;i<7;i++){let d=new Date(start);d.setDate(start.getDate()+i);let k=d.toISOString().slice(0,10);
+   vals.push(Math.min(100,(data.days[k]||0)/3*100));
+   labels.push(d.toLocaleDateString('en-IN',{day:'numeric',month:'short'}));
+ }
+ const pad={l:38,r:12,t:18,b:30},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+ ctx.strokeStyle='#252d3d';ctx.lineWidth=1;ctx.fillStyle='#8e98aa';ctx.font='11px system-ui';
+ [0,25,50,75,100].forEach(v=>{let y=pad.t+ch-(v/100)*ch;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillText(v+'%',5,y+4)});
+ let pts=vals.map((v,i)=>({x:pad.l+i*(cw/6),y:pad.t+ch-(v/100)*ch}));
+ ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.strokeStyle='#8b78ff';ctx.lineWidth=3;ctx.stroke();
+ pts.forEach((p,i)=>{ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fillStyle='#18d7a3';ctx.fill();ctx.fillStyle='#8e98aa';ctx.fillText(labels[i],p.x-15,h-8)});
+}
+function renderSubjects(){let s=['Physics','Chemistry','Maths'];document.getElementById('subjects').innerHTML=s.map(a=>{let arr=data.targets.filter(x=>x.subject?.toLowerCase()===a.toLowerCase()),p=arr.length?Math.round(arr.filter(x=>x.done).length/arr.length*100):0;return `<div class="subject"><div class="subject-top"><span>${a}</span><span>${p}%</span></div><div class="progress"><div class="bar" style="width:${p}%"></div></div></div>`}).join('')}
+function analytics(){let total=data.targets.length,done=data.targets.filter(x=>x.done).length,rate=total?Math.round(done/total*100):0;document.getElementById('rate').textContent=rate+'%';document.getElementById('doneTotal').textContent=done;let keys=Object.keys(data.days).filter(k=>data.days[k]>0).sort(),best=0,cur=0,prev=null;keys.forEach(k=>{let d=new Date(k);if(prev){let diff=(d-new Date(prev))/86400000;cur=diff===1?cur+1:1}else cur=1;best=Math.max(best,cur);prev=k});document.getElementById('best').textContent=best+' days';document.getElementById('daysTracked').textContent=keys.length;document.getElementById('streak').textContent=currentStreak()+' days 🔥';document.getElementById('insight').textContent=rate>=80?'Excellent consistency. Focus on maintaining the streak rather than chasing perfect days.':rate>=50?'You are building momentum. Try to finish the highest-priority target before adding more.':'Start small: complete your three core subject targets today and rebuild your streak.'}
+function currentStreak(){let c=0,d=new Date();for(;;){let k=d.toISOString().slice(0,10);if((data.days[k]||0)>0)c++;else break;d.setDate(d.getDate()-1);if(c>365)break}return c}
+function countdown(){let diff=Math.ceil((new Date('2027-01-01T00:00:00')-new Date())/86400000);document.getElementById('countdown').textContent=Math.max(0,diff)+' days'}
+function openModal(){document.getElementById('modal').classList.add('open');document.getElementById('name').focus()}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function addTarget(){let n=document.getElementById('name').value.trim(),s=document.getElementById('subject').value.trim()||'General',h=Number(document.getElementById('duration').value)||0;if(!n){toast('Enter a target first');return}data.targets.push({id:Date.now(),name:n,subject:s,duration:h,done:false});save();closeModal();document.getElementById('name').value='';document.getElementById('subject').value='';document.getElementById('duration').value='';render();toast('Target added')}
+function show(id,btn){['dashboard','targets','analytics','settings'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('pageTitle').textContent=id==='dashboard'?'Good evening, Jayant 👋':id[0].toUpperCase()+id.slice(1)}
+function resetData(){if(confirm('Reset all targets and progress?')){localStorage.removeItem(key);location.reload()}}
+function toast(t){let x=document.getElementById('toast');x.textContent=t;x.style.display='block';setTimeout(()=>x.style.display='none',1800)}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+fmtDate();countdown();render();
+</script>
+</body>
+</html>
